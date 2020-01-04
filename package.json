@@ -1,0 +1,22 @@
+{
+  "name": "ishchenko_hw_12",
+  "version": "1.0.0",
+  "description": "Messages",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gh-frontend-js-9/ishchenko_hw_12.git"
+  },
+  "author": "Me",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gh-frontend-js-9/ishchenko_hw_12/issues"
+  },
+  "homepage": "https://github.com/gh-frontend-js-9/ishchenko_hw_12#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
