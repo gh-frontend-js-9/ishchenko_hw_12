@@ -3,50 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../../assets/styles/css/styles.css">
+    <link rel="stylesheet" href="../../assets/styles/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <title>Title</title>
 </head>
 <body>
-    <header>
-        <nav>
+    <header class="header">
+        <nav class="flex-container">
             <div>
-                <div>
-                    <a href=""><img src="" alt="virtus"></a>
-                </div>
+                <a href="" class="logo link">Virtus</a>
             </div>
-            <div>
-                <div>
-                    <a href="">Add<span>+</span></a>
+            <div class="flex-container">
+                <div class="container container_hovered">
+                    <a href="" class="container__button link">Add<span class="container__plus">+</span></a>
+                </div>
+                <div class="icon icon_hovered">
+                    <i class="fa fa-search fa-lg" aria-hidden="true"></i>
+                </div>
+                <div class="icon icon_hovered">
+                    <i class="fa fa-bell-o fa-lg" aria-hidden="true"></i>
                 </div>
                 <div>
-                    <!--icon_search-->
-                </div>
-                <div>
-                    <!--icon_notification-->
-                </div>
-                <div>
-                    <div>
-                        <a href="">
-                            <img src="" alt="avatar">
-                            <span><!--icon_dropdown--></span>
+                        <a href="" class="link dropdown dropdown_hovered">
+                            <img src="../../assets/images/avatar.png" class="avatar" alt="avatar">
+                            <i class="fa fa-angle-down" aria-hidden="true"></i>
                         </a>
-                    </div>
                 </div>
             </div>
         </nav>
     </header>
-    <main>
-        <nav>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+    <main class="flex-container">
+        <nav class="side-nav">
+            <div class="nav-icon nav-icon_hovered">
+                <i class="fa fa-home fa-lg" aria-hidden="true"></i>
+            </div>
+            <div class="nav-icon nav-icon_hovered">
+                <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
+            </div>
+            <div class="nav-icon nav-icon_hovered">
+                <i class="fa fa-line-chart fa-lg" aria-hidden="true"></i>
+            </div>
+            <div class="nav-icon nav-icon_hovered">
+                <i class="fa fa-envelope fa-lg" aria-hidden="true"></i>
+            </div>
+            <div class="nav-icon nav-icon_hovered">
+                <i class="fa fa-users fa-lg" aria-hidden="true"></i>
+            </div>
         </nav>
-        <div>
-            <!--Messenger-->
+        <div id="messenger">
+
         </div>
     </main>
-
+    <script src="../../scripts/messenger.js"></script>
 </body>
 </html>
