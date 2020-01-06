@@ -1,0 +1,112 @@
+@import "../css/normalize.css";
+@import "variables/variables";
+
+.flex-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header{
+  padding: 1em;
+  background-color: $dark-theme;
+  color: $wh;
+}
+
+.link{
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo{
+  font-size: 2em;
+  padding-left: .2em;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.container{
+  border: 2px solid $light-theme;
+  border-radius: 1.5em;
+  margin-right: 1em;
+  &_hovered:hover{
+    border: 2px solid $wh;
+    color: $light-theme;
+  }
+  &__button{
+    display: block;
+    padding: .5em 1em .5em 1.5em;
+  }
+  &__plus{
+    padding-left: 1.5em;
+    color: $light-theme;
+  }
+}
+
+.icon{
+  padding: 0 2em;
+  &_hovered:hover{
+    color: $light-theme;
+  }
+}
+
+.avatar{
+  width: 60%;
+}
+
+.dropdown{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &_hovered:hover{
+    color: $light-theme;
+  }
+}
+
+.main{
+  height: calc(100vh - 72px);
+  display: flex;
+}
+
+.side-nav{
+  background-color: #2b2d3c;
+}
+
+.nav-icon{
+  padding: 1.5em;
+  color: grey;
+  &_hovered:hover{
+    color: $wh;
+  }
+}
+
+.bar{
+  padding: 1.5em;
+  width: calc(100vw - 140px);
+  background-color: $light-theme;
+}
+
+.notif{
+  padding-left: 1em;
+}
+
+.notif__icon{
+  padding: 1.2em;
+}
+
+.filter-container{
+  color: $wh;
+  padding-right: 1em;
+  &__section{
+    border: 1px solid $wh;
+    padding: .2em .5em;
+    border-radius: 1em;
+  }
+  &__date{
+    padding-right: 3em;
+  }
+  &__text{
+    padding-right: 1em;
+  }
+}
+
