@@ -116,3 +116,60 @@
 .filter-container__text {
   padding-right: 1em;
 }
+
+.flex {
+  display: flex;
+  height: calc(100vh - 146px);
+}
+
+.inbox-container {
+  flex: 2;
+  background-color: #2f3242;
+  overflow: auto;
+}
+
+.conversation-container {
+  flex: 4;
+  background-color: #2b2d3c;
+}
+
+.info-container {
+  flex: 2;
+  background-color: #2f3242;
+}
+
+.message-container {
+  padding: 1.5em;
+  border-bottom: 1px solid grey;
+}
+
+.user-block {
+  font-weight: 700;
+  color: #fff;
+}
+
+.name-block {
+  padding-left: 1em;
+}
+
+.date-container {
+  color: #2194f0;
+}
+
+.text-container {
+  padding-top: 1em;
+  color: grey;
+}
+
+.btn-conversation {
+  margin: 1em auto;
+  width: 90%;
+  color: #fff;
+  background-color: #2194f0;
+}
+
+.link-conversation {
+  display: block;
+  text-align: center;
+  padding: 1em;
+}

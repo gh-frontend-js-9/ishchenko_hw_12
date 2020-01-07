@@ -110,3 +110,59 @@
   }
 }
 
+.flex{
+  display: flex;
+  height: calc(100vh - 146px);
+}
+
+.inbox-container{
+  flex:2;
+  background-color: $dark-theme;
+  overflow: auto;
+}
+
+.conversation-container{
+  flex:4;
+  background-color: $dark-theme-messenger;
+}
+
+.info-container{
+  flex: 2;
+  background-color: $dark-theme;
+}
+
+.message-container{
+  padding: 1.5em;
+  border-bottom: 1px solid grey;
+}
+
+.user-block{
+  font-weight: 700;
+  color: $wh;
+}
+
+.name-block{
+  padding-left: 1em;
+}
+
+.date-container{
+  color: $light-theme;
+}
+
+.text-container{
+  padding-top: 1em;
+  color: grey;
+}
+
+.btn-conversation{
+  margin: 1em auto;
+  width: 90%;
+  color: $wh;
+  background-color: $light-theme;
+}
+
+.link-conversation{
+  display: block;
+  text-align: center;
+  padding: 1em;
+}
