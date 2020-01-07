@@ -52,7 +52,28 @@ filter.append(icon);
 
 
 let mainMessenger = document.createElement('div');
+mainMessenger.classList.add('flex');
+
 let inboxMessageContainer = document.createElement('div');
+inboxMessageContainer.classList.add('inbox-container');
+
+let messageBody = document.createElement('div');
+
+let newConversationBody = document.createElement('div');
+let buttonConversation = document.createElement('div');
+buttonConversation.classList.add('btn-conversation');
+let conversationLink = document.createElement('a');
+conversationLink.classList.add('link-conversation');
+conversationLink.innerHTML = 'New conversation';
+let iconPlus = document.createElement('i');
+iconPlus.setAttribute('class', 'fa fa-plus');
+conversationLink.prepend(iconPlus);
+
+let conversationContainer = document.createElement('div');
+conversationContainer.classList.add('conversation-container');
+
+let infoUserContainer = document.createElement('div');
+infoUserContainer.classList.add('info-container');
 
 let usersArr = [
     {avatarPath: '../../assets/images/michelle.png', name: 'Michelle Stewart', date: 'blabla', messege: 'lorem lorem'},
@@ -63,17 +84,26 @@ let usersArr = [
 
 usersArr.forEach((elem =>{
     let messageContainer = document.createElement('div');
+    messageContainer.classList.add('message-container');
 
     let messageInfo = document.createElement('div');
     messageInfo.classList.add('flex-container');
 
     let userBlock = document.createElement('div');
+    userBlock.classList.add('flex-container');
+    userBlock.classList.add('user-block');
+
     let userAvatar = document.createElement('img');
     let userName = document.createElement('span');
+    userName.classList.add('name-block');
+
     let dateBlock = document.createElement('div');
     let dateOfMessage = document.createElement('span');
+    dateOfMessage.classList.add('date-container');
 
     let userMessageBlock = document.createElement('div');
+    userMessageBlock.classList.add('text-container');
+
     let userMessageText = document.createElement('span');
 
     userAvatar.src = elem.avatarPath;
@@ -91,8 +121,14 @@ usersArr.forEach((elem =>{
     dateBlock.append(dateOfMessage);
     messageContainer.append(userMessageBlock);
     userMessageBlock.append(userMessageText);
-    inboxMessageContainer.append(messageContainer);
+    messageBody.append(messageContainer);
 }));
 
 messenger.append(mainMessenger);
 mainMessenger.append(inboxMessageContainer);
+inboxMessageContainer.append(messageBody);
+inboxMessageContainer.append(newConversationBody);
+newConversationBody.append(buttonConversation);
+buttonConversation.append(conversationLink);
+mainMessenger.append(conversationContainer);
+mainMessenger.append(infoUserContainer);
