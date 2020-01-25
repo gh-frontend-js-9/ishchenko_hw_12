@@ -1,0 +1,312 @@
+@import url(../css/normalize.css);
+.flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header {
+  padding: 1em;
+  background-color: #2f3242;
+  color: #fff;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo {
+  font-size: 2em;
+  padding-left: .2em;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.container {
+  border: 2px solid #2194f0;
+  border-radius: 1.5em;
+  margin-right: 1em;
+}
+
+.container_hovered:hover {
+  border: 2px solid #fff;
+  color: #2194f0;
+}
+
+.container__button {
+  display: block;
+  padding: .5em 1em .5em 1.5em;
+}
+
+.container__plus {
+  padding-left: 1.5em;
+  color: #2194f0;
+}
+
+.icon {
+  padding: 0 2em;
+}
+
+.icon_hovered:hover {
+  color: #2194f0;
+}
+
+.avatar {
+  width: 60%;
+}
+
+.dropdown {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown_hovered:hover {
+  color: #2194f0;
+}
+
+.main {
+  height: calc(100vh - 72px);
+  display: flex;
+}
+
+.side-nav {
+  background-color: #2b2d3c;
+}
+
+.main-content {
+  flex-basis: 100%;
+}
+
+.nav-icon {
+  padding: 1.5em;
+  color: grey;
+}
+
+.nav-icon_hovered:hover {
+  color: #fff;
+}
+
+.tools-container {
+  padding: .4em 1.2em;
+  background-color: #2194f0;
+}
+
+.notif-bar {
+  display: flex;
+}
+
+.notif__icon {
+  padding: 1.2em;
+}
+
+.filter-container {
+  color: #fff;
+}
+
+.filter-container__section {
+  border: 1px solid #fff;
+  padding: .3em .6em;
+  border-radius: 1em;
+}
+
+.filter-container__date {
+  padding-right: 4em;
+}
+
+.filter-container__text {
+  padding-right: 1em;
+}
+
+.thread-container {
+  display: flex;
+  height: 81vh;
+  background-color: #2b2d3c;
+}
+
+.inbox-container {
+  flex: 3;
+  background-color: #2f3242;
+}
+
+.button-thread {
+  background-color: inherit;
+  padding: 1em 2em;
+  border-top: 1px solid #808080;
+}
+
+.button {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+  padding: .5em;
+  outline: none;
+  border-radius: .3em;
+  background-color: #2194f0;
+  color: #fff;
+  border: 0;
+}
+
+.button_hovered:hover {
+  background-color: #4485f0;
+}
+
+.button__icon {
+  padding-right: .5em;
+}
+
+.conversation-container {
+  flex: 5;
+  background-color: #2b2d3c;
+}
+
+/*
+.style{
+  background-color: grey;
+  padding: .5em;
+}
+
+.field{
+  border: 0;
+  background-color: inherit;
+}
+
+.send{
+  border: none;
+  background-color: inherit;
+}
+*/
+.info-container {
+  flex: 2;
+  background-color: #2f3242;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.output-container {
+  overflow: auto;
+  height: 70vh;
+}
+
+.modal-window {
+  position: absolute;
+  top: 4em;
+  left: 10em;
+  max-height: 300px;
+  max-width: 300px;
+  background-color: #2194f0;
+  display: none;
+  overflow: auto;
+}
+
+.modal-window__container {
+  padding: 1em .5em;
+  font-weight: bolder;
+  color: #fff;
+}
+
+.modal-window__container_hovered:hover {
+  background-color: #4485f0;
+}
+
+.thread-elem {
+  padding: 2em;
+  border-bottom: 1px solid #394152;
+}
+
+.thread-elem__name {
+  display: inline-block;
+  min-width: 150px;
+  font-weight: bolder;
+  font-size: larger;
+  color: #fff;
+}
+
+.thread-elem__message {
+  color: grey;
+  font-size: smaller;
+  padding-left: 1em;
+}
+
+.thread-elem_hovered:hover {
+  background-color: #394152;
+}
+
+.message-container {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.message-layout {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.message-text {
+  margin-right: 2em;
+  padding: 1em;
+  border-bottom-left-radius: 1.5em;
+  border-top-right-radius: 1.5em;
+  border-top-left-radius: .5em;
+  color: #fff;
+  background-color: #2194f0;
+}
+
+.input-container {
+  padding: 1em 2em;
+}
+
+.input-container__field {
+  display: flex;
+  background-color: grey;
+  padding: .5em 1em;
+  border-radius: .3em;
+}
+
+.message-common {
+  outline: none;
+  border: 0;
+  background-color: inherit;
+}
+
+.message-field {
+  flex-basis: 100%;
+  color: #fff;
+}
+
+.message-button {
+  color: #484848;
+}
+
+.message-button_hovered:hover {
+  border-radius: .5em;
+  background-color: #686868;
+}
+
+.info-section {
+  padding: 1em 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-section__name {
+  font-weight: bolder;
+  font-size: 1.5em;
+}
+
+.info-section__text {
+  font-size: smaller;
+  padding: 0;
+  line-height: .6;
+}
+
+.info-section_white {
+  color: #fff;
+}
+
+.info-section_grey {
+  color: grey;
+}

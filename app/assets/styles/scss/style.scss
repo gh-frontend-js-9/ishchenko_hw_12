@@ -1,0 +1,298 @@
+@import "../css/normalize.css";
+@import "variables/variables";
+
+.flex-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header{
+  padding: 1em;
+  background-color: $dark-theme;
+  color: $wh;
+}
+
+.link{
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo{
+  font-size: 2em;
+  padding-left: .2em;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.container{
+  border: 2px solid $light-theme;
+  border-radius: 1.5em;
+  margin-right: 1em;
+  &_hovered:hover{
+    border: 2px solid $wh;
+    color: $light-theme;
+  }
+  &__button{
+    display: block;
+    padding: .5em 1em .5em 1.5em;
+  }
+  &__plus{
+    padding-left: 1.5em;
+    color: $light-theme;
+  }
+}
+
+.icon{
+  padding: 0 2em;
+  &_hovered:hover{
+    color: $light-theme;
+  }
+}
+
+.avatar{
+  width: 60%;
+}
+
+.dropdown{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &_hovered:hover{
+    color: $light-theme;
+  }
+}
+
+.main{
+  height: calc(100vh - 72px);
+  display: flex;
+}
+
+
+.side-nav{
+  background-color: #2b2d3c;
+}
+
+.main-content{
+  flex-basis: 100%;
+
+}
+
+.nav-icon{
+  padding: 1.5em;
+  color: grey;
+  &_hovered:hover{
+    color: $wh;
+  }
+}
+
+.tools-container{
+  padding: .4em 1.2em;
+  background-color: $light-theme;
+}
+
+.notif-bar{
+  display: flex;
+}
+
+.notif__icon{
+  padding: 1.2em;
+}
+
+.filter-container{
+  color: $wh;
+  &__section{
+    border: 1px solid $wh;
+    padding: .3em .6em;
+    border-radius: 1em;
+  }
+  &__date{
+    padding-right: 4em;
+  }
+  &__text{
+    padding-right: 1em;
+  }
+}
+
+.thread-container{
+  display: flex;
+  height: 81vh;
+  background-color: $dark-theme-messenger;
+}
+
+.inbox-container{
+  flex: 3;
+  background-color: $dark-theme;
+}
+
+.button-thread{
+  background-color: inherit;
+  padding: 1em 2em;
+  border-top: 1px solid #808080;
+}
+
+.button{
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+  padding: .5em;
+  outline: none;
+  border-radius: .3em;
+  background-color: $light-theme;
+  color: $wh;
+  border: 0;
+  &_hovered:hover{
+    background-color: #4485f0;
+  }
+  &__icon{
+    padding-right: .5em;
+  }
+}
+
+.conversation-container{
+  flex:5;
+  background-color: $dark-theme-messenger;
+}
+
+/*
+.style{
+  background-color: grey;
+  padding: .5em;
+}
+
+.field{
+  border: 0;
+  background-color: inherit;
+}
+
+.send{
+  border: none;
+  background-color: inherit;
+}
+*/
+
+.info-container{
+  flex: 2;
+  background-color: $dark-theme;
+  display: flex;
+  justify-content: center;
+  align-items: center ;
+  text-align: center;
+}
+
+.output-container{
+  overflow: auto;
+  height: 70vh;
+}
+
+
+.modal-window{
+  position: absolute;
+  top: 4em;
+  left: 10em;
+  max-height: 300px;
+  max-width: 300px;
+  background-color: $light-theme;
+  display: none;
+  overflow: auto;
+  &__container{
+    padding: 1em .5em;
+    font-weight: bolder;
+    color:  $wh;
+    &_hovered:hover{
+      background-color: #4485f0;
+    }
+  }
+}
+
+
+.thread-elem{
+  padding: 2em;
+  border-bottom: 1px solid #394152;
+  &__name{
+    display: inline-block;
+    min-width: 150px;
+    font-weight: bolder;
+    font-size: larger;
+    color: $wh;
+  }
+  &__message{
+    color: grey;
+    font-size: smaller;
+    padding-left: 1em;
+  }
+  &_hovered:hover{
+    background-color: #394152;
+  }
+}
+
+
+.message-container{
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.message-layout{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.message-text{
+  margin-right: 2em;
+  padding: 1em;
+  border-bottom-left-radius: 1.5em;
+  border-top-right-radius: 1.5em;
+  border-top-left-radius: .5em;
+  color: $wh;
+  background-color: $light-theme;
+}
+
+.input-container{
+  padding: 1em 2em;
+  &__field{
+    display: flex;
+    background-color: grey;
+    padding: .5em 1em;
+    border-radius: .3em;
+  }
+}
+
+.message-common{
+  outline: none;
+  border:0;
+  background-color: inherit;
+}
+
+.message-field{
+  flex-basis: 100%;
+  color: $wh;
+}
+
+.message-button{
+  color: #484848;
+  &_hovered:hover{
+    border-radius: .5em;
+    background-color: #686868;
+  }
+}
+
+.info-section{
+  padding: 1em 0;
+  display: flex;
+  flex-direction: column;
+  &__name{
+    font-weight: bolder;
+    font-size: 1.5em;
+  }
+  &__text{
+    font-size: smaller;
+    padding: 0;
+    line-height: .6;
+  }
+  &_white{
+    color: $wh;
+  }
+  &_grey{
+    color: grey;
+  }
+}
