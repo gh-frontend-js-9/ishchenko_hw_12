@@ -68,8 +68,14 @@
   display: flex;
 }
 
+
 .side-nav{
   background-color: #2b2d3c;
+}
+
+.main-content{
+  flex-basis: 100%;
+
 }
 
 .nav-icon{
@@ -80,14 +86,13 @@
   }
 }
 
-.bar{
-  padding: 1.5em;
-  width: calc(100vw - 140px);
+.tools-container{
+  padding: .4em 1.2em;
   background-color: $light-theme;
 }
 
-.notif{
-  padding-left: 1em;
+.notif-bar{
+  display: flex;
 }
 
 .notif__icon{
@@ -96,73 +101,198 @@
 
 .filter-container{
   color: $wh;
-  padding-right: 1em;
   &__section{
     border: 1px solid $wh;
-    padding: .2em .5em;
+    padding: .3em .6em;
     border-radius: 1em;
   }
   &__date{
-    padding-right: 3em;
+    padding-right: 4em;
   }
   &__text{
     padding-right: 1em;
   }
 }
 
-.flex{
+.thread-container{
   display: flex;
-  height: calc(100vh - 146px);
+  height: 81vh;
+  background-color: $dark-theme-messenger;
 }
 
 .inbox-container{
-  flex:2;
+  flex: 3;
   background-color: $dark-theme;
-  overflow: auto;
+}
+
+.button-thread{
+  background-color: inherit;
+  padding: 1em 2em;
+  border-top: 1px solid #808080;
+}
+
+.button{
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+  padding: .5em;
+  outline: none;
+  border-radius: .3em;
+  background-color: $light-theme;
+  color: $wh;
+  border: 0;
+  &_hovered:hover{
+    background-color: #4485f0;
+  }
+  &__icon{
+    padding-right: .5em;
+  }
 }
 
 .conversation-container{
-  flex:4;
+  flex:5;
   background-color: $dark-theme-messenger;
 }
+
+/*
+.style{
+  background-color: grey;
+  padding: .5em;
+}
+
+.field{
+  border: 0;
+  background-color: inherit;
+}
+
+.send{
+  border: none;
+  background-color: inherit;
+}
+*/
 
 .info-container{
   flex: 2;
   background-color: $dark-theme;
+  display: flex;
+  justify-content: center;
+  align-items: center ;
+  text-align: center;
 }
+
+.output-container{
+  overflow: auto;
+  height: 70vh;
+}
+
+
+.modal-window{
+  position: absolute;
+  top: 4em;
+  left: 10em;
+  max-height: 300px;
+  max-width: 300px;
+  background-color: $light-theme;
+  display: none;
+  overflow: auto;
+  &__container{
+    padding: 1em .5em;
+    font-weight: bolder;
+    color:  $wh;
+    &_hovered:hover{
+      background-color: #4485f0;
+    }
+  }
+}
+
+
+.thread-elem{
+  padding: 2em;
+  border-bottom: 1px solid #394152;
+  &__name{
+    display: inline-block;
+    min-width: 150px;
+    font-weight: bolder;
+    font-size: larger;
+    color: $wh;
+  }
+  &__message{
+    color: grey;
+    font-size: smaller;
+    padding-left: 1em;
+  }
+  &_hovered:hover{
+    background-color: #394152;
+  }
+}
+
 
 .message-container{
-  padding: 1.5em;
-  border-bottom: 1px solid grey;
+  display: flex;
+  flex-direction: column-reverse;
 }
 
-.user-block{
-  font-weight: 700;
-  color: $wh;
+.message-layout{
+  display: flex;
+  justify-content: flex-end;
 }
 
-.name-block{
-  padding-left: 1em;
-}
-
-.date-container{
-  color: $light-theme;
-}
-
-.text-container{
-  padding-top: 1em;
-  color: grey;
-}
-
-.btn-conversation{
-  margin: 1em auto;
-  width: 90%;
+.message-text{
+  margin-right: 2em;
+  padding: 1em;
+  border-bottom-left-radius: 1.5em;
+  border-top-right-radius: 1.5em;
+  border-top-left-radius: .5em;
   color: $wh;
   background-color: $light-theme;
 }
 
-.link-conversation{
-  display: block;
-  text-align: center;
-  padding: 1em;
+.input-container{
+  padding: 1em 2em;
+  &__field{
+    display: flex;
+    background-color: grey;
+    padding: .5em 1em;
+    border-radius: .3em;
+  }
+}
+
+.message-common{
+  outline: none;
+  border:0;
+  background-color: inherit;
+}
+
+.message-field{
+  flex-basis: 100%;
+  color: $wh;
+}
+
+.message-button{
+  color: #484848;
+  &_hovered:hover{
+    border-radius: .5em;
+    background-color: #686868;
+  }
+}
+
+.info-section{
+  padding: 1em 0;
+  display: flex;
+  flex-direction: column;
+  &__name{
+    font-weight: bolder;
+    font-size: 1.5em;
+  }
+  &__text{
+    font-size: smaller;
+    padding: 0;
+    line-height: .6;
+  }
+  &_white{
+    color: $wh;
+  }
+  &_grey{
+    color: grey;
+  }
 }
