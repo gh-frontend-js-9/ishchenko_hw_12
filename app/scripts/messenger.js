@@ -1,134 +1,266 @@
-let notificationBar = document.createElement('div');
-notificationBar.classList.add('bar');
-notificationBar.classList.add('flex-container');
+async function retrieveThreads(){
+    return await fetch('https://geekhub-frontend-js-9.herokuapp.com/api/threads?sort=desc', {
+        method: 'GET',
+        headers: {
+            'x-access-token' : localStorage.getItem('userToken')
+        }
+    })
+}
 
-let notfButtonContainer = document.createElement('div');
-notfButtonContainer.classList.add('notif');
+async function getMessageHistory(threadId){
+    return await fetch(`https://geekhub-frontend-js-9.herokuapp.com/api/threads/messages/${threadId}?sort=desc`,{
+        method: 'GET',
+        headers: {
+            'x-access-token' : localStorage.getItem('userToken')
+        }
+    })
+        .then(response =>{
+            return response.json();
+        })
+}
 
-let notfFilterContainer = document.createElement('div');
-notfFilterContainer.classList.add('flex-container');
-notfFilterContainer.classList.add('filter-container');
+async function getAllUsers() {
+    return await fetch('https://geekhub-frontend-js-9.herokuapp.com/api/users/all',{
+        method: 'GET',
+        headers: {
+            'x-access-token' : localStorage.getItem('userToken')
+        }
+    })
+        .then(response => {
+            return response.json();
+        })
+}
 
-let notfElements = [
-    {icon: 'fa fa-inbox', text: 'Inbox'},
-    {icon:  'fa fa-paper-plane', text: 'Send'},
-    {icon:  'fa fa-trash', text: 'Trash'}
-];
+async function getUserById(userId) {
+    return await fetch(`https://geekhub-frontend-js-9.herokuapp.com/api/users/${userId}`,{
+        method: 'GET',
+        headers: {
+            'x-access-token': localStorage.getItem('userToken')
+        }
+    })
+        .then(response =>{
+            return response.json();
+        })
+}
 
-notfElements.forEach(elem =>{
-    let i = document.createElement('i');
-    let text = document.createElement('span');
+async function createThread(id) {
+    let object = {
+        'user': {
+            '_id': id
+        }
+    }
 
-    i.setAttribute('class', elem.icon);
-    text.classList.add('notif__icon');
-    text.innerHTML = elem.text;
+    return await fetch('https://geekhub-frontend-js-9.herokuapp.com/api/threads',{
+        method: 'POST',
+        headers: {
+            'x-access-token' : localStorage.getItem('userToken'),
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(object)
+    })
+}
 
-    notfButtonContainer.append(i);
-    notfButtonContainer.append(text);
+async function sendMessage(threadId){
+    let inputMessage = document.getElementById('input').value;
+
+    let obj = {
+        "thread": {
+            "_id": threadId
+        },
+        "message": {
+            "body": inputMessage
+        }
+    }
+
+    return await fetch('https://geekhub-frontend-js-9.herokuapp.com/api/threads/messages', {
+        method: 'POST',
+        headers: {
+            'x-access-token' : localStorage.getItem('userToken'),
+            'Content-Type' : 'application/json'
+        },
+        body : JSON.stringify(obj)
+    })
+}
+
+document.getElementById('send').addEventListener('click', (event) => {
+    let buttonContainer = event.target.closest('[data-thread-id]');
+    let threadId = buttonContainer.getAttribute('data-thread-id');
+    sendMessage(threadId);
+})
+
+retrieveThreads()
+    .then(response =>{
+        return response.json();
+    })
+    .then(threads => {
+    threads.forEach((thread) =>{
+            renderThread(document.getElementById('output'), thread, (event) =>{
+                let threadContainer = event.target.closest('[data-thread-id]');
+                let threadId = threadContainer.getAttribute('data-thread-id');
+                document.getElementById('send').setAttribute('data-thread-id', threadId);
+                getMessageHistory(threadId)
+                    .then(res => {
+                        renderThreadMessages(res);
+                    })
+                getUserById(thread.users[1]._id)
+                    .then(info =>{
+                        renderUserInfo(info);
+                    })
+            })
+        })
+    })
+
+document.getElementById('conver').addEventListener('click', (e) =>{
+    e.preventDefault();
+    getAllUsers()
+        .then(response => {
+            renderUsers(response);
+        })
 });
 
-let filterText = document.createElement('span');
-filterText.classList.add('filter-container__text');
-filterText.innerHTML = 'Filter messages:';
+function renderThread(container, thread, startConversation){
+    let threadContainer = document.createElement('div');
+    threadContainer.setAttribute('data-thread-id', thread._id);
+    threadContainer.classList.add('thread-elem', 'thread-elem_hovered');
+    threadContainer.addEventListener('click', startConversation);
 
-let filterDate = document.createElement('span');
-filterDate.classList.add('filter-container__date');
-filterDate.innerHTML = 'Date';
+    let userNameBlock = document.createElement('span');
+    userNameBlock.classList.add('thread-elem__name');
+    let messageBlock = document.createElement('span');
+    messageBlock.classList.add('thread-elem__message');
 
-let filter = document.createElement('div');
-filter.classList.add('filter-container__section');
+    userNameBlock.innerHTML = thread.users[1].name;
+    messageBlock.innerText = 'Say hi to your friend!';
 
-let icon = document.createElement('i');
-icon.setAttribute('class','fa fa-angle-down');
+    threadContainer.append(userNameBlock);
+    threadContainer.append(messageBlock);
+    container.append(threadContainer);
+}
 
-messenger.append(notificationBar);
-notificationBar.append(notfButtonContainer);
-notificationBar.append(notfFilterContainer);
-notfFilterContainer.append(filterText);
-notfFilterContainer.append(filter);
-filter.append(filterDate);
-filter.append(icon);
-
+function renderUsers(obj) {
+    let modalContainer = document.createElement('div');
+    modalContainer.classList.add('modal-window');
+    modalContainer.style.display = 'block';
 
 
-let mainMessenger = document.createElement('div');
-mainMessenger.classList.add('flex');
+    obj.forEach(resp =>{
+        let userContainer = document.createElement('div');
+        userContainer.classList.add('modal-window__container', 'modal-window__container_hovered');
 
-let inboxMessageContainer = document.createElement('div');
-inboxMessageContainer.classList.add('inbox-container');
+        userContainer.innerHTML = resp.name;
+        userContainer.addEventListener('click', (e) =>{
+            e.preventDefault();
+            modalContainer.style.display = 'none';
 
-let messageBody = document.createElement('div');
+            createThread(resp._id);
+        });
 
-let newConversationBody = document.createElement('div');
-let buttonConversation = document.createElement('div');
-buttonConversation.classList.add('btn-conversation');
-let conversationLink = document.createElement('a');
-conversationLink.classList.add('link-conversation');
-conversationLink.innerHTML = 'New conversation';
-let iconPlus = document.createElement('i');
-iconPlus.setAttribute('class', 'fa fa-plus');
-conversationLink.prepend(iconPlus);
+        modalContainer.append(userContainer);
+    })
+    document.getElementById('output').append(modalContainer);
+}
 
-let conversationContainer = document.createElement('div');
-conversationContainer.classList.add('conversation-container');
+function renderThreadMessages(messages) {
+   let messageContainer = document.getElementById('output2');
+   messageContainer.classList.add('message-container');
+   messageContainer.innerHTML = ' ';
 
-let infoUserContainer = document.createElement('div');
-infoUserContainer.classList.add('info-container');
+   messages.forEach(text => {
+       let messageLayout = document.createElement('div');
+       messageLayout.classList.add('message-layout');
+       let messageText = document.createElement('p');
+       messageText.classList.add('message-text');
+       messageText.innerText = text.body;
 
-let usersArr = [
-    {avatarPath: '../../assets/images/michelle.png', name: 'Michelle Stewart', date: 'blabla', messege: 'lorem lorem'},
-    {avatarPath: '../../assets/images/Jolene.png', name: 'Jolene Slater', date: 'blabla', messege: 'lorem lorem'},
-    {avatarPath: '../../assets/images/Lyall.png', name: 'Lyall Roach', date: 'blabla', messege: 'lorem lorem'},
-    {avatarPath: '../../assets/images/Dominic.png', name: 'Dominic Lynton', date: 'blabla', messege: 'lorem lorem'}
-]
+       messageLayout.append(messageText);
+       messageContainer.append(messageLayout);
+   })
+}
 
-usersArr.forEach((elem =>{
-    let messageContainer = document.createElement('div');
-    messageContainer.classList.add('message-container');
+function renderUserInfo(info) {
+    let infoContainer = document.getElementById('output3');
+    let userInfo = document.createElement('div');
+    infoContainer.innerHTML = ' ';
 
-    let messageInfo = document.createElement('div');
-    messageInfo.classList.add('flex-container');
+    let nameSection = document.createElement('div');
+    nameSection.classList.add('info-section');
 
-    let userBlock = document.createElement('div');
-    userBlock.classList.add('flex-container');
-    userBlock.classList.add('user-block');
+    let name = document.createElement('span');
+    name.classList.add('info-section__name', 'info-section_white');
+    name.innerHTML = info.name;
 
-    let userAvatar = document.createElement('img');
-    let userName = document.createElement('span');
-    userName.classList.add('name-block');
+    let position = document.createElement('span');
+    position.classList.add('info-section__text', 'info-section_grey');
+    position.innerHTML = info.position;
 
-    let dateBlock = document.createElement('div');
-    let dateOfMessage = document.createElement('span');
-    dateOfMessage.classList.add('date-container');
+    nameSection.append(name);
+    nameSection.append(position);
+    userInfo.append(nameSection);
 
-    let userMessageBlock = document.createElement('div');
-    userMessageBlock.classList.add('text-container');
 
-    let userMessageText = document.createElement('span');
+    let descriptionSection = document.createElement('div');
+    let description = document.createElement('span');
+    description.classList.add('info-section__text', 'info-section_grey');
+    description.innerHTML = info.description;
 
-    userAvatar.src = elem.avatarPath;
-    userName.innerHTML = elem.name;
+    descriptionSection.append(description);
+    userInfo.append(descriptionSection);
 
-    dateOfMessage.innerHTML = elem.date;
+    let emailSection = document.createElement('div');
+    emailSection.classList.add('info-section');
+    let textEmail = document.createElement('span');
+    textEmail.classList.add('info-section__text', 'info-section_grey');
+    textEmail.innerText ='Email';
+    let email = document.createElement('span');
+    email.classList.add('info-section_white');
+    email.innerHTML = info.email;
 
-    userMessageText.innerHTML = elem.messege;
+    emailSection.append(textEmail);
+    emailSection.append(email);
+    userInfo.append(emailSection);
 
-    messageContainer.append(messageInfo);
-    messageInfo.append(userBlock);
-    userBlock.append(userAvatar);
-    userBlock.append(userName);
-    messageInfo.append(dateBlock);
-    dateBlock.append(dateOfMessage);
-    messageContainer.append(userMessageBlock);
-    userMessageBlock.append(userMessageText);
-    messageBody.append(messageContainer);
-}));
 
-messenger.append(mainMessenger);
-mainMessenger.append(inboxMessageContainer);
-inboxMessageContainer.append(messageBody);
-inboxMessageContainer.append(newConversationBody);
-newConversationBody.append(buttonConversation);
-buttonConversation.append(conversationLink);
-mainMessenger.append(conversationContainer);
-mainMessenger.append(infoUserContainer);
+    let numberSection = document.createElement('div');
+    numberSection.classList.add('info-section');
+    let textNumber = document.createElement('span');
+    textNumber.classList.add('info-section__text', 'info-section_grey');
+    textNumber.innerText = 'Phone';
+    let number = document.createElement('span');
+    number.classList.add('info-section_white');
+    number.innerHTML = info.phone;
+
+    numberSection.append(textNumber);
+    numberSection.append(number);
+    userInfo.append(numberSection);
+
+    let addressSection = document.createElement('div');
+    addressSection.classList.add('info-section');
+    let textAddress = document.createElement('span');
+    textAddress.classList.add('info-section__text', 'info-section_grey');
+    textAddress.innerText = 'Address';
+    let address = document.createElement('span');
+    address.classList.add('info-section_white');
+    address.innerHTML = info.address;
+
+    addressSection.append(textAddress);
+    addressSection.append(address);
+    userInfo.append(addressSection);
+
+    let organizationSection = document.createElement('div');
+    organizationSection.classList.add('info-section');
+    let textOrganization = document.createElement('span');
+    textOrganization.classList.add('info-section__text', 'info-section_grey');
+    textOrganization.innerText = 'Organization';
+    let organization = document.createElement('span');
+    organization.classList.add('info-section_white');
+    organization.innerHTML = info.organization;
+
+    organizationSection.append(textOrganization);
+    organizationSection.append(organization);
+    userInfo.append(organizationSection);
+
+    infoContainer.append(userInfo);
+}
+
+
+
