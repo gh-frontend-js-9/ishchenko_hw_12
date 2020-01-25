@@ -13,6 +13,7 @@
             <div>
                 <a href="" class="logo link">Virtus</a>
             </div>
+
             <div class="flex-container">
                 <div class="container container_hovered">
                     <a href="" class="container__button link">Add<span class="container__plus">+</span></a>
@@ -50,8 +51,69 @@
                 <i class="fa fa-users fa-lg" aria-hidden="true"></i>
             </div>
         </nav>
-        <div id="messenger">
 
+        <div class="main-content">
+            <div class="tools-container flex-container">
+                <div class="notif-bar">
+                    <div>
+                        <i class="notif__icon fa fa-inbox"></i>
+                        <span>Inbox</span>
+                    </div>
+                    <div>
+                        <i class="notif__icon fa fa-paper-plane"></i>
+                        <span>Send</span>
+                    </div>
+                    <div>
+                        <i class="notif__icon fa fa-trash"></i>
+                        <span>Trash</span>
+                    </div>
+                </div>
+
+                <div class="flex-container filter-container">
+                    <span class="filter-container__text">
+                        Filter text:
+                    </span>
+                    <div class="filter-container__section">
+                        <span class="filter-container__date">Date</span>
+                        <i class="fa fa-angle-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="thread-container">
+
+                <div class="inbox-container">
+                    <div id="output" class="output-container">
+                        <!--new messages will be added here-->
+                    </div>
+                    <div class="button-thread">
+                        <button id='conver' class="button button_hovered">
+                            <i class="button__icon fa fa-plus"></i>
+                            New conversation
+                        </button>
+                    </div>
+                </div>
+
+                <div class = "conversation-container">
+                    <div id="output2" class = "output-container">
+                        <!--new thread messages will be added here-->
+                    </div>
+                    <div class = "input-container">
+                        <div class = "input-container__field">
+                            <input id="input" class = "message-field message-common" type="text">
+                            <button id="send" class = "message-button message-common message-button_hovered">
+                                <i class="fa fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-container">
+                    <div id="output3">
+
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     <script src="../../scripts/messenger.js"></script>
